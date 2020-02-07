@@ -2,7 +2,7 @@
 
 This project shows how to use terraform to build a cluster on AWS and deploy a Confluent Platform.
 
-* Create a tf file with these variables set:
+* Create a myvars.tf file with these variables set:
 
 ```terraform
 variable "AWS_ACCESS_KEY" {
