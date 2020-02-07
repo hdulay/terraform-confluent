@@ -1,17 +1,37 @@
-# terraform-confluent
+# terraform-confluent & Ansible
 
-## journal
+This project shows how to use terraform to build a cluster on AWS and deploy a Confluent Platform.
 
-```bash
-sudo journalctl -u confluent-control-center
+* Create a tf file with these variables set:
+
+```terraform
+variable "AWS_ACCESS_KEY" {
+    default = "change me"
+}
+
+variable "AWS_SECRET_KEY" {
+    default = "change me"
+}
+
+variable "USER" {
+  default = "this_is_you"
+}
+
 ```
 
-## YAML from jq
+* Set the USER variable in the Makefile to the same value as the terraform USER variable above.
+
+```Makefile
+USER = this_is_you
+
+```
+
+## Commands
+
 ```bash
-terraform output -json | jq  -r 'keys[] as $k | "\($k)\n" | "  \(.[$k] | .value[])"'
-
-terraform output -json | jq  'to_entries[] | {(.key): .value.value} '
-
-terraform output -json | jq  'to_entries[] | {(.key): .value.value} ' | jq -s | json2yaml
-
+terraform apply
+make inventory
+# append to host.yml and fix formatting
+make ping
+make go
 ```

@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 resource "aws_security_group" "ubuntu_allow_all" {
-  name        = "hubert_allow_all"
+  name        = "${var.USER}_allow_all"
   description = "Allow All traffic"
 
   ingress {
@@ -27,12 +27,12 @@ resource "aws_instance" "zk" {
   count = 3
   ami           = "ami-04b9e92b5572fa0d1"
   instance_type = "t2.micro"
-  key_name   = "hubert-se"
+  key_name   = "${var.USER}-se"
   vpc_security_group_ids = ["${aws_security_group.ubuntu_allow_all.name}"]
 
   tags = {
-    Name = "hubert-tf-zk"
-    Owner = "hubert"
+    Name = "${var.USER}-tf-zk"
+    Owner = "${var.USER}"
     type = "zookeeper"
   }
 }
@@ -41,12 +41,12 @@ resource "aws_instance" "broker" {
   count = 3
   ami           = "ami-04b9e92b5572fa0d1"
   instance_type = "t2.micro"
-  key_name   = "hubert-se"
+  key_name   = "${var.USER}-se"
   vpc_security_group_ids = ["${aws_security_group.ubuntu_allow_all.name}"]
 
   tags = {
-    Name = "hubert-tf-broker"
-    Owner = "hubert"
+    Name = "${var.USER}-tf-broker"
+    Owner = "${var.USER}"
     type = "kafka_broker"
   }
 }
@@ -54,13 +54,13 @@ resource "aws_instance" "broker" {
 resource "aws_instance" "c3" {
   count = 1
   ami           = "ami-04b9e92b5572fa0d1"
-  instance_type = "t2.large"
-  key_name   = "hubert-se"
+  instance_type = "t2.medium"
+  key_name   = "${var.USER}-se"
   vpc_security_group_ids = ["${aws_security_group.ubuntu_allow_all.name}"]
 
   tags = {
-    Name = "hubert-tf-c3"
-    Owner = "hubert"
+    Name = "${var.USER}-tf-c3"
+    Owner = "${var.USER}"
     type = "kafka_c3"
   }
 }
@@ -70,12 +70,12 @@ resource "aws_instance" "sr" {
   count = 1
   ami           = "ami-04b9e92b5572fa0d1"
   instance_type = "t2.micro"
-  key_name   = "hubert-se"
+  key_name   = "${var.USER}-se"
   vpc_security_group_ids = ["${aws_security_group.ubuntu_allow_all.name}"]
 
   tags = {
-    Name = "hubert-tf-sr"
-    Owner = "hubert"
+    Name = "${var.USER}-tf-sr"
+    Owner = "${var.USER}"
     type = "kafka_sr"
   }
 }
@@ -84,12 +84,12 @@ resource "aws_instance" "connect" {
   count = 1
   ami           = "ami-04b9e92b5572fa0d1"
   instance_type = "t2.micro"
-  key_name   = "hubert-se"
+  key_name   = "${var.USER}-se"
   vpc_security_group_ids = ["${aws_security_group.ubuntu_allow_all.name}"]
 
   tags = {
-    Name = "hubert-tf-connect"
-    Owner = "hubert"
+    Name = "${var.USER}-tf-connect"
+    Owner = "${var.USER}"
     type = "kafka_connect"
   }
 }
@@ -99,12 +99,12 @@ resource "aws_instance" "ksql" {
   count = 1
   ami           = "ami-04b9e92b5572fa0d1"
   instance_type = "t2.micro"
-  key_name   = "hubert-se"
+  key_name   = "${var.USER}-se"
   vpc_security_group_ids = ["${aws_security_group.ubuntu_allow_all.name}"]
 
   tags = {
-    Name = "hubert-tf-ksql"
-    Owner = "hubert"
+    Name = "${var.USER}-tf-ksql"
+    Owner = "${var.USER}"
     type = "kafka_ksql"
   }
 }
