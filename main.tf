@@ -27,7 +27,7 @@ resource "aws_instance" "zk" {
   count = 3
   ami           = "ami-04b9e92b5572fa0d1"
   instance_type = "t2.micro"
-  key_name   = "${var.USER}-se"
+  key_name   = "${var.PEM}"
   vpc_security_group_ids = ["${aws_security_group.ubuntu_allow_all.name}"]
 
   tags = {
@@ -41,7 +41,7 @@ resource "aws_instance" "broker" {
   count = 3
   ami           = "ami-04b9e92b5572fa0d1"
   instance_type = "t2.micro"
-  key_name   = "${var.USER}-se"
+  key_name   = "${var.PEM}"
   vpc_security_group_ids = ["${aws_security_group.ubuntu_allow_all.name}"]
 
   tags = {
@@ -55,7 +55,7 @@ resource "aws_instance" "c3" {
   count = 1
   ami           = "ami-04b9e92b5572fa0d1"
   instance_type = "t2.medium"
-  key_name   = "${var.USER}-se"
+  key_name   = "${var.PEM}"
   vpc_security_group_ids = ["${aws_security_group.ubuntu_allow_all.name}"]
 
   tags = {
@@ -70,7 +70,7 @@ resource "aws_instance" "sr" {
   count = 1
   ami           = "ami-04b9e92b5572fa0d1"
   instance_type = "t2.micro"
-  key_name   = "${var.USER}-se"
+  key_name   = "${var.PEM}"
   vpc_security_group_ids = ["${aws_security_group.ubuntu_allow_all.name}"]
 
   tags = {
@@ -84,7 +84,7 @@ resource "aws_instance" "connect" {
   count = 1
   ami           = "ami-04b9e92b5572fa0d1"
   instance_type = "t2.micro"
-  key_name   = "${var.USER}-se"
+  key_name   = "${var.PEM}"
   vpc_security_group_ids = ["${aws_security_group.ubuntu_allow_all.name}"]
 
   tags = {
@@ -99,7 +99,7 @@ resource "aws_instance" "ksql" {
   count = 1
   ami           = "ami-04b9e92b5572fa0d1"
   instance_type = "t2.micro"
-  key_name   = "${var.USER}-se"
+  key_name   = "${var.PEM}"
   vpc_security_group_ids = ["${aws_security_group.ubuntu_allow_all.name}"]
 
   tags = {

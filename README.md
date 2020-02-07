@@ -26,12 +26,14 @@ USER = this_is_you
 
 ```
 
+* Clone cp-ansible/hosts_example.yml to ./hosts.yml and change **ansible_ssh_private_key_file** to the path to your pem file.
+
 ## Commands
 
 ```bash
 terraform apply
 make inventory
-# append to host.yml and fix formatting
+# paste the output over the existing inventory in host.yml and fix formatting
 make ping
 make go
 ```

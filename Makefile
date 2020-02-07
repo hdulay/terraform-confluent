@@ -48,9 +48,6 @@ list-tags:
 		--output json \
 		| jq ".Reservations[].Instances[] | [.PublicDnsName, .Tags[]] "
 
-ping:
-	ansible -i hosts.yml all -m ping
-
 inventory:
 	terraform output -json \
 		| jq  'to_entries[] | {(.key): {hosts: .value.value}} ' \
@@ -60,6 +57,9 @@ inventory:
 		| sed 's/ "/ /g' \
 		| sed 's/"/:/g'
 
+ping:
+	ansible -i hosts.yml all -m ping
+
 go:
-	ansible-playbook -i hosts.yml all.yml
+	ansible-playbook -i hosts.yml cp-ansible/all.yml
 
