@@ -50,7 +50,13 @@ ping:
 	ansible -i hosts.yml all -m ping
 
 inventory:
-	terraform output -json | jq  'to_entries[] | {(.key): .value.value} ' | jq -s | json2yaml
+	terraform output -json \
+		| jq  'to_entries[] | {(.key): {hosts: .value.value}} ' \
+		| jq -s \
+		| json2yaml \
+		| sed 's/ - / /g' \
+		| sed 's/ "/ /g' \
+		| sed 's/"/:/g'
 
 go:
 	ansible-playbook -i hosts.yml all.yml
