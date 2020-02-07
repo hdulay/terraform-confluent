@@ -34,4 +34,6 @@ override.tf.json
 *.idea
 generated_ssl_files/
 
+AWSCLIV2.pkg
+
 secrets.tf
