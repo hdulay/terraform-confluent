@@ -1,4 +1,4 @@
-USER = hubert
+USER = this_is_you
 
 z:
 	aws2 ec2 describe-instances \
