@@ -2,6 +2,10 @@
 
 This project shows how to use terraform to build a cluster on AWS and deploy a Confluent Platform.
 
+## Dependencies
+
+This project uses **json2yaml** to ( do I really have to say it? ). https://www.npmjs.com/package/json2yaml
+
 * Create a myvars.tf file with these variables set:
 
 ```terraform
@@ -20,8 +24,6 @@ variable "USER" {
 variable "PEM" {
   default = "keyname"
 }
-
-
 ```
 
 * Set the USER variable in the Makefile to the same value as the terraform USER variable above.
