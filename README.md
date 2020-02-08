@@ -17,6 +17,11 @@ variable "USER" {
   default = "this_is_you"
 }
 
+variable "PEM" {
+  default = "keyname"
+}
+
+
 ```
 
 * Set the USER variable in the Makefile to the same value as the terraform USER variable above.
