@@ -6,6 +6,8 @@ This project shows how to use terraform to build a cluster on AWS and deploy a C
 
 This project uses **json2yaml** to ( do I really have to say it? ). https://www.npmjs.com/package/json2yaml
 
+## Steps
+
 * Create a myvars.tf file with these variables set:
 
 ```terraform
