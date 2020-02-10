@@ -8,7 +8,7 @@ This project uses **json2yaml** to ( do I really have to say it? ). https://www.
 
 ## Steps
 
-* Create a myvars.tf file with these variables set:
+* Create a myvars.tfvars file with these variables set:
 
 ```terraform
 variable "AWS_ACCESS_KEY" {
