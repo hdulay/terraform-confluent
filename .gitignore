@@ -36,4 +36,4 @@ generated_ssl_files/
 
 AWSCLIV2.pkg
 
-*.tfvars
+secrets.tf
