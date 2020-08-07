@@ -1,4 +1,10 @@
-USER = this_is_you
+USER = hubert
+
+all:
+	aws2 ec2 describe-instances \
+		--filters "Name=tag:Name,Values=$(USER)*" "Name=instance-state-name,Values=running" \
+		--output json \
+		| jq ".Reservations[].Instances[].PublicDnsName" -r
 
 z:
 	aws2 ec2 describe-instances \
@@ -58,8 +64,11 @@ inventory:
 		| sed 's/"/:/g'
 
 ping:
-	ansible -i hosts.yml all -m ping
+	ansible -i hosts-test.yml all -m ping
 
 go:
-	ansible-playbook -i hosts.yml cp-ansible/all.yml
+	ansible-playbook -i hosts-test.yml cp-ansible/all.yml
+
+cntpart:
+	kafka-topics --bootstrap-server ec2-204-236-254-140.compute-1.amazonaws.com:9092  --describe | grep PartitionCount |  egrep -o 'PartitionCount: [0-9]*' | egrep -o '\d+' | awk '{ SUM += $1} END { print SUM }'
 

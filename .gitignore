@@ -37,3 +37,4 @@ generated_ssl_files/
 AWSCLIV2.pkg
 
 secrets.tf
+ssl

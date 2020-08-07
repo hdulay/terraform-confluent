@@ -1,0 +1,59 @@
+all:
+  vars:
+    ansible_connection: ssh
+    ansible_user: ubuntu
+    ansible_become: true
+    ansible_ssh_private_key_file: "/Users/hubert.dulay/development/aws/hubert-se.pem"
+    
+    # SASL
+    sasl_protocol: plain
+    sasl_plain_users:
+      user1:
+        principal: user1
+        password: my-secret
+      user2:
+        principal: user2
+        password: my-secret
+      user3:
+        principal: user3
+        password: my-secret
+    
+    # TLS
+    ssl_enabled: true
+    ssl_mutual_auth_enabled: true
+
+    # ## CP-Ansible can move keystores/truststores to their corresponding hosts and configure the components to use them. Set These vars
+    # ssl_provided_keystore_and_truststore: true
+    # ssl_keystore_filepath: "/Users/hubert.dulay/development/terraform-confluent/ssl/{{inventory_hostname}}-keystore.jks"
+    # ssl_keystore_key_password: serverpassword
+    # ssl_keystore_store_password: serverpassword
+    # ssl_truststore_filepath: "/Users/hubert.dulay/development/terraform-confluent/ssl/truststore.jks"
+    # ssl_truststore_password: serverpassword
+
+control_center: 
+  hosts: 
+    ec2-18-232-66-81.compute-1.amazonaws.com:
+
+kafka_broker: 
+  hosts: 
+    ec2-3-94-205-237.compute-1.amazonaws.com:
+    ec2-35-168-22-123.compute-1.amazonaws.com:
+    ec2-54-147-99-128.compute-1.amazonaws.com:
+
+kafka_connect: 
+  hosts: 
+    ec2-18-207-191-149.compute-1.amazonaws.com:
+
+ksql: 
+  hosts: 
+    ec2-54-210-65-166.compute-1.amazonaws.com:
+
+schema_registry: 
+  hosts: 
+    ec2-3-90-155-177.compute-1.amazonaws.com:
+
+zookeeper: 
+  hosts: 
+    ec2-3-93-14-26.compute-1.amazonaws.com:
+    ec2-54-145-143-170.compute-1.amazonaws.com:
+    ec2-34-201-121-153.compute-1.amazonaws.com:
